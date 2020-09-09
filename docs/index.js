@@ -1,7 +1,6 @@
 const imageUpload = document.getElementById("imageUpload");
 let predictedAges = [];
 let choose = document.getElementById("choose");
-let date = document.getElementById("date");
 
 async function make() {
 const MODEL_URL ="/face-api/weights/";
@@ -27,7 +26,8 @@ imageUpload.addEventListener('change' , async() => {
   const Image = imageUpload.files[0];
   console.log(Image);
   console.log(Image.lastModifiedDate);
-  date.innerHTML +=Image.lastModifiedDate;
+  let date = document.querySelector("#date");
+  date.innerHTML =Image.lastModifiedDate;
 
   let image = await faceapi.bufferToImage(imageUpload.files[0]);
   
@@ -60,30 +60,38 @@ imageUpload.addEventListener('change' , async() => {
 
   })
   
-  let AgeandGenderResults = document.querySelector("#AgeandGenderResults");  
-  let FaceExpressionResults = document.querySelector("#FaceExpressionResults");  
+  let Age1 = document.querySelector("#Age1");  
+  let Gender1 = document.querySelector("#Gender1");
+  let GenderProbability1 = document.querySelector("#GenderProbability1");
+  let Angry1 = document.querySelector("#Angry1");  
+  let Disgusted1 = document.querySelector("#Disgusted1");  
+  let Fearful1 = document.querySelector("#Fearful1");  
+  let Happy1 = document.querySelector("#Happy1");  
+  let Neutral1 = document.querySelector("#Neutral1");  
+  let Sad1 = document.querySelector("#Sad1");  
+  let Surprised1 = document.querySelector("#Surprised1");  
 
-    let ageResult = `<p> Age : ${detections[0].age.toFixed(0)} years</p>`
-    let gender =`<p> Gender : ${detections[0].gender}</p>`
-    let genderProbability =`<p> Gender Probability : ${detections[0].genderProbability*100}%</p>`
-    let angry = `<p> Angry : ${(detections[0].expressions.angry)*100}%</p>`
-    let disgusted = `<p> Disgusted : ${detections[0].expressions.disgusted*100}%</p>`
-    let fearful = `<p> Fearful : ${detections[0].expressions.fearful*100}%</p>`
-    let happy = `<p> Happy : ${detections[0].expressions.happy*100}%</p>`
-    let neutral = `<p> Neutral : ${detections[0].expressions.neutral*100}%</p>`
-    let sad = `<p> Sad : ${detections[0].expressions.sad*100}%</p>`
-    let surprised = `<p> Surprised : ${detections[0].expressions.surprised*100}%</p>`
+let ageResult = `<p> Age : ${detections[0].age.toFixed(0)} years</p>`
+let gender =`<p> Gender : ${detections[0].gender}</p>`
+let genderProbability =`<p> Gender Probability : ${detections[0].genderProbability*100}%</p>`
+let angry = `<p> Angry : ${(detections[0].expressions.angry)*100}%</p>`
+let disgusted = `<p> Disgusted : ${detections[0].expressions.disgusted*100}%</p>`
+let fearful = `<p> Fearful : ${detections[0].expressions.fearful*100}%</p>`
+let happy = `<p> Happy : ${detections[0].expressions.happy*100}%</p>`
+let neutral = `<p> Neutral : ${detections[0].expressions.neutral*100}%</p>`
+let sad = `<p> Sad : ${detections[0].expressions.sad*100}%</p>`
+let surprised = `<p> Surprised : ${detections[0].expressions.surprised*100}%</p>`
 
-    AgeandGenderResults.innerHTML +=ageResult;
-    AgeandGenderResults.innerHTML +=gender;
-    AgeandGenderResults.innerHTML +=genderProbability;
-    FaceExpressionResults.innerHTML += angry;
-    FaceExpressionResults.innerHTML +=disgusted;
-    FaceExpressionResults.innerHTML +=fearful;
-    FaceExpressionResults.innerHTML +=happy;
-    FaceExpressionResults.innerHTML +=neutral;
-    FaceExpressionResults.innerHTML +=sad;
-    FaceExpressionResults.innerHTML +=surprised;
+Age1.innerHTML =ageResult;
+Gender1.innerHTML =gender;
+GenderProbability1.innerHTML =genderProbability;
+Angry1.innerHTML = angry;
+Disgusted1.innerHTML =disgusted;
+Fearful1.innerHTML =fearful;
+Happy1.innerHTML =happy;
+Neutral1.innerHTML =neutral;
+Sad1.innerHTML =sad;
+Surprised1.innerHTML =surprised;
 
 //使うときがきたら使う
 const angryResult = detections[0].expressions.angry ;
